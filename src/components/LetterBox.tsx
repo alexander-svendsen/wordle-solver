@@ -1,18 +1,53 @@
-import {Box } from "@chakra-ui/react"
+import {Box, useColorModeValue} from "@chakra-ui/react"
+import {useState} from "react";
+
+type MODE = 'unknown' | 'misplaced' | 'known'
+
+function decideMode(mode: MODE): MODE {
+    switch (mode){
+        case 'unknown': return 'misplaced'
+        case 'misplaced': return 'known'
+        case 'known': return 'unknown'
+    }
+
+    return 'unknown'
+}
+
+const bColorDark: { [key: string]: string } = {
+    'unknown': '--chakra-colors-gray-100',
+    'misplaced': '#c9b458',
+    'known': '#6aaa64'
+}
+
+const bColorLight: { [key: string]: string } = {
+    'unknown': '--chakra-colors-gray-100',
+    'misplaced': '#b59f3b',
+    'known': '#538d4e'
+}
 
 function LetterBox() {
+    const [mode, setMode] = useState<MODE>('unknown')
+    const colorPicker = useColorModeValue(bColorLight, bColorDark)
+
     return (
-        <Box bg='white'
-             color='black'
-             border='2px solid black'
-             w='100%'
+        <Box bg={colorPicker[mode]}
+             color='--chakra-colors-gray-100'
+             borderColor='--chakra-colors-gray-100'
+             border='2px solid'
              fontSize='2rem'
              display='inline-flex'
              alignItems='center'
              fontWeight='bold'
              textTransform='uppercase'
-             justifyContent='center'>
-            T
+             lineHeight='2rem'
+             w='3.5rem'
+             h='3.5rem'
+             justifyContent='center'
+             cursor='pointer'
+             userSelect='none'
+             onClick={() => {setMode(decideMode(mode))}}
+        >
+            B
         </Box>
     )
 }

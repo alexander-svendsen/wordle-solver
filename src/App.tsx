@@ -1,15 +1,50 @@
 import React from 'react';
-import {ChakraProvider} from '@chakra-ui/react'
+import {Box, ChakraProvider, Grid, GridItem} from '@chakra-ui/react'
 import './App.css';
 import theme from "./theme";
-import Header from "./components/header";
+import Header from "./components/Header";
+import LetterBox from "./components/LetterBox";
 
 function App() {
     return (
         <ChakraProvider theme={theme}>
-            <div className="App">
                 <Header/>
-            </div>
+                <Box
+                    display='flex'
+                    flexDirection='column'
+                    maxW='500px'
+                    height='calc(100% - 50px)'
+                    margin='0 auto'
+                >
+                    <Box
+                        display='flex'
+                        flexGrow='1'
+                        alignItems='center'
+                        justifyContent='center'
+                    >
+                        <Grid templateRows='repeat(6, 1fr)' gap='5px' w="350px" p='10px'>
+                            <Box>
+                            <Grid templateColumns='repeat(5, 1fr)' gap='5px'>
+                                <GridItem w='100%'>
+                                    <LetterBox/>
+                                </GridItem>
+                                <GridItem w='100%'>
+                                    <LetterBox/>
+                                </GridItem>
+                                <GridItem w='100%'>
+                                    <LetterBox/>
+                                </GridItem>
+                                <GridItem w='100%'>
+                                    <LetterBox/>
+                                </GridItem>
+                                <GridItem w='100%'>
+                                    <LetterBox/>
+                                </GridItem>
+                            </Grid>
+                            </Box>
+                        </Grid>
+                    </Box>
+                </Box>
         </ChakraProvider>
     );
 }

@@ -1,7 +1,7 @@
 import {Heading, useColorMode } from "@chakra-ui/react"
 import { IconButton } from '@chakra-ui/react'
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
-import styles from './header.module.css';
+import styles from './Header.module.css';
 
 function Header() {
     const { colorMode, toggleColorMode } = useColorMode()

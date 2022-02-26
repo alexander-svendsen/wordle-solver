@@ -25,9 +25,14 @@ const bColorLight: { [key: string]: string } = {
     'known': '#538d4e'
 }
 
-function LetterBox() {
+interface Props {
+    letter?: string
+}
+
+function LetterBox(props: Props) {
     const [mode, setMode] = useState<MODE>('unknown')
     const colorPicker = useColorModeValue(bColorLight, bColorDark)
+    const { letter } = props;
 
     return (
         <Box bg={colorPicker[mode]}
@@ -43,11 +48,11 @@ function LetterBox() {
              w='3.5rem'
              h='3.5rem'
              justifyContent='center'
+             onKeyDown={() => console.log("haha")}
              cursor='pointer'
              userSelect='none'
-             onClick={() => {setMode(decideMode(mode))}}
-        >
-            B
+             onClick={() => {!!letter && setMode(decideMode(mode))}}>
+
         </Box>
     )
 }

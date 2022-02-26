@@ -1,11 +1,16 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Box, ChakraProvider, Grid, GridItem} from '@chakra-ui/react'
 import './App.css';
 import theme from "./theme";
 import Header from "./components/Header";
 import LetterBox from "./components/LetterBox";
+import useKeyBoardEvent from "./hooks/useKeyBoardEvent";
 
 function App() {
+    useKeyBoardEvent(key => {
+        console.log(key.key);
+    })
+
     return (
         <ChakraProvider theme={theme}>
                 <Header/>

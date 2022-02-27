@@ -1,4 +1,4 @@
-import {Box, Grid, GridItem, useColorModeValue} from "@chakra-ui/react"
+import {Box, GridItem, useColorModeValue} from "@chakra-ui/react"
 import React, {useState} from "react";
 
 type MODE = 'unknown' | 'misplaced' | 'known'

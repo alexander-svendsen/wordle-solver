@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Box, ChakraProvider, Grid, GridItem} from '@chakra-ui/react'
+import {ChakraProvider} from '@chakra-ui/react'
 import './App.css';
 import theme from "./theme";
 import Header from "./components/header/Header";

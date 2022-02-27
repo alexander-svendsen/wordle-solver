@@ -2,18 +2,21 @@ import React, {useEffect, useState} from 'react';
 import {Box, ChakraProvider, Grid, GridItem} from '@chakra-ui/react'
 import './App.css';
 import theme from "./theme";
-import Header from "./components/Header";
-import LetterBox from "./components/LetterBox";
+import Header from "./components/header/Header";
+import LetterBox from "./components/letter-stuff/LetterBox";
+import LetterRow from "./components/letter-stuff/LetterRow";
+import GameArea from "./components/wrapper/GameArea";
+import Board from "./components/wrapper/Board";
+import BoardWrapper from "./components/wrapper/BoardWrapper";
 
 function App() {
-
     const [word, setWord] = useState('');
+
     useEffect(() => {
         const func = (ev: KeyboardEvent) => {
-            if (ev.key.length === 1 && ev.key.match(/[a-z]/i)){
+            if (ev.key.length === 1 && ev.key.match(/[a-z]/i)) {
                 setWord(prevStata => prevStata.length < 5 ? prevStata + ev.key : prevStata)
-            }
-            else if (ev.key === 'Backspace'){
+            } else if (ev.key === 'Backspace') {
                 setWord(prev => prev.slice(0, -1))
             }
         }
@@ -24,47 +27,22 @@ function App() {
         };
     }, [setWord])
 
-    console.log(word)
-
     return (
         <ChakraProvider theme={theme}>
-                <Header/>
-                <Box
-                    display='flex'
-                    flexDirection='column'
-                    maxW='500px'
-                    height='calc(100% - 50px)'
-                    margin='0 auto'
-                >
-                    <Box
-                        display='flex'
-                        flexGrow='1'
-                        alignItems='center'
-                        justifyContent='center'
-                    >
-                        <Grid templateRows='repeat(6, 1fr)' gap='5px' w="350px" p='10px'>
-                            <Box>
-                            <Grid templateColumns='repeat(5, 1fr)' gap='5px'>
-                                <GridItem w='3.5rem' h='3.5rem'>
-                                    <LetterBox letter={word.slice(0,1)}/>
-                                </GridItem>
-                                <GridItem w='3.5rem' h='3.5rem'>
-                                    <LetterBox letter={word.slice(1,2)}/>
-                                </GridItem>
-                                <GridItem w='3.5rem' h='3.5rem'>
-                                    <LetterBox letter={word.slice(2,3)}/>
-                                </GridItem>
-                                <GridItem w='3.5rem' h='3.5rem'>
-                                    <LetterBox letter={word.slice(3,4)}/>
-                                </GridItem>
-                                <GridItem w='3.5rem' h='3.5rem'>
-                                    <LetterBox letter={word.slice(4,5)}/>
-                                </GridItem>
-                            </Grid>
-                            </Box>
-                        </Grid>
-                    </Box>
-                </Box>
+            <Header/>
+            <GameArea>
+                <BoardWrapper>
+                    <Board>
+                            <LetterRow>
+                                <LetterBox letter={word.slice(0, 1)}/>
+                                <LetterBox letter={word.slice(1, 2)}/>
+                                <LetterBox letter={word.slice(2, 3)}/>
+                                <LetterBox letter={word.slice(3, 4)}/>
+                                <LetterBox letter={word.slice(4, 5)}/>
+                            </LetterRow>
+                    </Board>
+                </BoardWrapper>
+            </GameArea>
         </ChakraProvider>
     );
 }

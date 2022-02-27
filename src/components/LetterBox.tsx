@@ -15,14 +15,14 @@ function decideMode(mode: MODE): MODE {
 
 const bColorDark: { [key: string]: string } = {
     'unknown': '--chakra-colors-gray-100',
-    'misplaced': '#c9b458',
-    'known': '#6aaa64'
+    'misplaced': '#b59f3b',
+    'known': '#538d4e'
 }
 
 const bColorLight: { [key: string]: string } = {
     'unknown': '--chakra-colors-gray-100',
-    'misplaced': '#b59f3b',
-    'known': '#538d4e'
+    'misplaced': '#c9b458',
+    'known': '#6aaa64',
 }
 
 interface Props {
@@ -52,7 +52,7 @@ function LetterBox(props: Props) {
              cursor='pointer'
              userSelect='none'
              onClick={() => {!!letter && setMode(decideMode(mode))}}>
-
+            {letter}
         </Box>
     )
 }

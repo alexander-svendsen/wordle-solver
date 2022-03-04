@@ -1,4 +1,4 @@
-import {Box, GridItem, useColorModeValue} from "@chakra-ui/react"
+import {Box, GridItem, keyframes, ScaleFade, useColorModeValue} from "@chakra-ui/react"
 import React from "react";
 
 const bColorDark: { [key: string]: string } = {
@@ -19,13 +19,20 @@ interface Props {
     onClick: () => void
 }
 
+const stretch = keyframes`
+  from {transform: scale(1);}
+  to {transform: scale(1.1);}
+`;
+
 function LetterBox(props: Props) {
     const colorPicker = useColorModeValue(bColorLight, bColorDark)
+
     const {letter, letterState, onClick} = props;
+
+    const stretchAnimation = !!letter ? `${stretch} 1 0.05s normal`: '';
 
     return (
         <GridItem w='3.5rem' h='3.5rem'>
-
             <Box bg={colorPicker[!!letterState ? letterState : 'u']}
                  color='--chakra-colors-gray-100'
                  borderColor='--chakra-colors-gray-100'
@@ -41,6 +48,7 @@ function LetterBox(props: Props) {
                  justifyContent='center'
                  cursor='pointer'
                  userSelect='none'
+                 animation={stretchAnimation}
                  onClick={onClick}>
                 {letter}
             </Box>

@@ -26,7 +26,7 @@ function decideLetterState(mode: string): LetterState {
 }
 
 function App() {
-    console.log(stuff("tales", "ukmmm"))
+    console.log(stuff("oaleo", "muuum"))
 
     const [word, setWord] = useState('');
     const [wordState, setWordState] = useState('');

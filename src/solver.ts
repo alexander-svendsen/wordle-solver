@@ -1,5 +1,6 @@
 import answers from "./wordlist/answers";
 import {LetterState} from "./types/LetterTyps";
+import {occurences} from "./utils";
 
 
 
@@ -19,10 +20,15 @@ export function stuff(word: string, letterState: string): string[] {
                 break;
             case "m":
                 const maybeLetter = word[index]
-                suggestionList = suggestionList.filter(answerWord => {
+                let amount = 0
+                letters.forEach((lookUpLetter, newIndex) => {
+                    if (lookUpLetter === maybeLetter && letterState[newIndex] === 'm'){
+                        amount += 1;
+                    }
+                })
 
-                    // TODO remember multiple letters kan be unkown
-                    return answerWord.split("").includes(maybeLetter) &&
+                suggestionList = suggestionList.filter(answerWord => {
+                    return occurences(answerWord, maybeLetter) === amount &&
                         maybeLetter !== answerWord[index]
                 })
                 break;

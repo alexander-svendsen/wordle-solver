@@ -9,8 +9,8 @@ import GameArea from "./components/wrapper/GameArea";
 import Board from "./components/wrapper/Board";
 import BoardWrapper from "./components/wrapper/BoardWrapper";
 import {charAt, replaceAt} from "./utils";
-
-export type LetterState = 'u' | 'm' | 'k'
+import {LetterState} from "./types/LetterTyps";
+import {stuff} from "./solver";
 
 function decideLetterState(mode: string): LetterState {
     switch (mode) {
@@ -25,12 +25,9 @@ function decideLetterState(mode: string): LetterState {
     return 'u'
 }
 
-export interface WordState {
-    letter: string;
-    state: LetterState;
-}
-
 function App() {
+    console.log(stuff("tales", "ukmmm"))
+
     const [word, setWord] = useState('');
     const [wordState, setWordState] = useState('');
 
@@ -42,6 +39,8 @@ function App() {
             } else if (ev.key === 'Backspace') {
                 setWord(prev => prev.slice(0, -1))
                 setWordState(prev => prev.slice(0, -1))
+            } else if (ev.key === 'Enter') {
+                console.log("solve it")
             }
         }
 

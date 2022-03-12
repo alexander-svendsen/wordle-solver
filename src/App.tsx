@@ -26,7 +26,7 @@ function decideLetterState(mode: string): LetterState {
 }
 
 function App() {
-    console.log(stuff("oaleo", "muuum"))
+    //console.log(stuff("oaleo", "muuum"))
 
     const [word, setWord] = useState('');
     const [wordState, setWordState] = useState('');
@@ -84,7 +84,7 @@ function App() {
                                 <LetterBox letter={charAt(word, 3)}
                                            letterState={charAt(wordState, 3)}
                                            onClick={() => {
-                                               const state = charAt(wordState, 2)
+                                               const state = charAt(wordState, 3)
                                                const newState = decideLetterState(state)
                                                setWordState(replaceAt(wordState, 3, newState))
                                            }}

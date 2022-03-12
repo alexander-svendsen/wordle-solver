@@ -9,6 +9,12 @@ export function solutionSuggestions(word: string, letterState: string): string[]
     letters.forEach((letter, index) => {
         const state = letterState[index] as LetterState;
         switch (state) {
+            case "n":
+                const knownNotLetter = word[index]
+                suggestionList = suggestionList.filter(answerWord => {
+                    return !answerWord.split("").includes(knownNotLetter)
+                })
+                break;
             case "k":
                 const knownLetter = word[index]
                 suggestionList = suggestionList.filter(answerWord => {

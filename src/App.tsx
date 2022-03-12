@@ -20,6 +20,8 @@ function decideLetterState(mode: string): LetterState {
         case 'm':
             return 'k'
         case 'k':
+            return 'n'
+        case 'n':
             return 'u'
     }
 
@@ -27,8 +29,6 @@ function decideLetterState(mode: string): LetterState {
 }
 
 function App() {
-    //console.log(stuff("oaleo", "muuum"))
-
     const [word, setWord] = useState('');
     const [wordState, setWordState] = useState('');
     const [suggestions, setSuggestions] = useState<string[]>([])

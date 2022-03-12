@@ -4,13 +4,15 @@ import React from "react";
 const bColorDark: { [key: string]: string } = {
     'u': '--chakra-colors-gray-100',
     'm': '#b59f3b',
-    'k': '#538d4e'
+    'k': '#538d4e',
+    'n': '#3a3a3c'
 }
 
 const bColorLight: { [key: string]: string } = {
     'u': '--chakra-colors-gray-100',
     'm': '#c9b458',
     'k': '#6aaa64',
+    'n': '#787c7e'
 }
 
 interface Props {

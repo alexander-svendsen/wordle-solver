@@ -1,1 +1,1 @@
-export type LetterState = 'u' | 'm' | 'k'
+export type LetterState = 'u' | 'm' | 'k' | "n"

@@ -1,4 +1,4 @@
-import {Box, GridItem, keyframes, ScaleFade, useColorModeValue} from "@chakra-ui/react"
+import {Box, GridItem, keyframes, useColorModeValue} from "@chakra-ui/react"
 import React from "react";
 
 const bColorDark: { [key: string]: string } = {

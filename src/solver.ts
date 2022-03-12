@@ -2,15 +2,12 @@ import answers from "./wordlist/answers";
 import {LetterState} from "./types/LetterTyps";
 import {occurences} from "./utils";
 
-
-
-//TODO write test for me
-export function stuff(word: string, letterState: string): string[] {
+export function solutionSuggestions(word: string, letterState: string): string[] {
     const letters = word.split("");
     let suggestionList = answers
 
     letters.forEach((letter, index) => {
-        const state = <LetterState>letterState[index];
+        const state = letterState[index] as LetterState;
         switch (state) {
             case "k":
                 const knownLetter = word[index]
@@ -35,8 +32,6 @@ export function stuff(word: string, letterState: string): string[] {
             default:
                 // ignore the rest
                 break;
-
-
         }
     })
 

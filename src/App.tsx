@@ -10,7 +10,8 @@ import Board from "./components/wrapper/Board";
 import BoardWrapper from "./components/wrapper/BoardWrapper";
 import {charAt, replaceAt} from "./utils";
 import {LetterState} from "./types/LetterTyps";
-import {stuff} from "./solver";
+import {solutionSuggestions} from "./solver";
+import LetterShowBox from "./components/letter-stuff/LetterShowBox";
 
 function decideLetterState(mode: string): LetterState {
     switch (mode) {
@@ -30,6 +31,7 @@ function App() {
 
     const [word, setWord] = useState('');
     const [wordState, setWordState] = useState('');
+    const [suggestions, setSuggestions] = useState<string[]>([])
 
     useEffect(() => {
         const func = (ev: KeyboardEvent) => {
@@ -39,16 +41,17 @@ function App() {
             } else if (ev.key === 'Backspace') {
                 setWord(prev => prev.slice(0, -1))
                 setWordState(prev => prev.slice(0, -1))
-            } else if (ev.key === 'Enter') {
-                console.log("solve it")
+                setSuggestions([])
+            } else if (ev.key === 'Enter' && word.length === 5) {
+                setSuggestions((solutionSuggestions(word, wordState)))
             }
         }
 
         window.addEventListener("keyup", func, false);
         return () => {
-            window.addEventListener("keyup", func, false);
+            window.removeEventListener("keyup", func, false);
         };
-    }, [setWord, setWordState])
+    }, [word, wordState])
 
     return (
         <ChakraProvider theme={theme}>
@@ -63,6 +66,7 @@ function App() {
                                                const state = charAt(wordState, 0)
                                                const newState = decideLetterState(state)
                                                setWordState(replaceAt(wordState, 0, newState))
+                                               setSuggestions([])
                                            }}
                                 />
                                 <LetterBox letter={charAt(word, 1)}
@@ -71,6 +75,7 @@ function App() {
                                                const state = charAt(wordState, 1)
                                                const newState = decideLetterState(state)
                                                setWordState(replaceAt(wordState, 1, newState))
+                                               setSuggestions([])
                                            }}
                                 />
                                 <LetterBox letter={charAt(word, 2)}
@@ -79,6 +84,7 @@ function App() {
                                                const state = charAt(wordState, 2)
                                                const newState = decideLetterState(state)
                                                setWordState(replaceAt(wordState, 2, newState))
+                                               setSuggestions([])
                                            }}
                                 />
                                 <LetterBox letter={charAt(word, 3)}
@@ -87,6 +93,7 @@ function App() {
                                                const state = charAt(wordState, 3)
                                                const newState = decideLetterState(state)
                                                setWordState(replaceAt(wordState, 3, newState))
+                                               setSuggestions([])
                                            }}
                                 />
                                 <LetterBox letter={charAt(word, 4)}
@@ -95,8 +102,16 @@ function App() {
                                                const state = charAt(wordState, 4)
                                                const newState = decideLetterState(state)
                                                setWordState(replaceAt(wordState, 4, newState))
+                                               setSuggestions([])
                                            }}/>
                             </LetterRow>
+                            {suggestions.slice(0, 5).map(val =>
+                                <LetterRow key={val}>
+                                    {val.split("").map((l, index) =>
+                                        <LetterShowBox key={l + index}>{l}</LetterShowBox>)
+                                    }
+                                </LetterRow>
+                            )}
                     </Board>
                 </BoardWrapper>
             </GameArea>

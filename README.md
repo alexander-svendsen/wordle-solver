@@ -1,6 +1,7 @@
-# Getting Started with Create React App
+# Wordle solver
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Made to give wordle solution suggestion. Made as a fun hobby project
 
 ## Available Scripts
 

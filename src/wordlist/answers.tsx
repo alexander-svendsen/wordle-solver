@@ -1,4 +1,4 @@
-export default [
+const answers = [
 'aback',
 'abase',
 'abate',
@@ -2315,3 +2315,5 @@ export default [
 'zesty',
 'zonal',
 ]
+
+export default answers;

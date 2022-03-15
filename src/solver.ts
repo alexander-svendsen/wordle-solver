@@ -31,7 +31,7 @@ export function solutionSuggestions(word: string, letterState: string): string[]
                 })
 
                 suggestionList = suggestionList.filter(answerWord => {
-                    return occurences(answerWord, maybeLetter) === amount &&
+                    return occurences(answerWord, maybeLetter) >= amount &&
                         maybeLetter !== answerWord[index]
                 })
                 break;
